@@ -4,12 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MergeSort
+namespace SortLibrary
 {
-    class Program
+    public class Sorts
     {
-
-        static T[] MergeSort<T>(T[] array)
+        public static T[] MergeSort<T>(T[] array) where T : IComparable<T>
         {
             if (array.Length <= 1)
             {
@@ -38,18 +37,36 @@ namespace MergeSort
             return output;
         }
 
-        static T[] Merge<T>(T[] left, T[] right)
+        private static T[] Merge<T>(T[] left, T[] right) where T : IComparable<T>
         {
             //merge both arrays together
+            T[] temp = new T[left.Length + right.Length];
 
-            return null;
-        }
+            int x = 0;
+            int y = 0;
+            int z = 0;
 
+            for (z = 0; z < temp.Length; z++)
+            {
+                if (x == temp.Length - 1)
+                {
+                    temp[z] = left[x];
+                }
+                else if (y == temp.Length - 1)
+                {
+                    temp[z] = right[y];
+                }
+                else if (left[x].CompareTo(right[y]) >= 0)
+                {
+                    x += 1;
+                }
+                else if (left[x].CompareTo(right[y]) < 0)
+                {
+                    y += 1;
+                }
+            }
 
-
-        static void Main(string[] args)
-        {
-
+            return temp;
         }
     }
 }

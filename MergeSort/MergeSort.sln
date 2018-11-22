@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28010.2046
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MergeSort", "MergeSort\MergeSort.csproj", "{24C99B24-8AFD-440F-B446-73A2DA541CC2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MergeSortTest", "MergeSortTest\MergeSortTest.csproj", "{3DC8D62F-1E37-46FC-A2FF-6701665783B5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SortLibrary", "SortLibrary\SortLibrary.csproj", "{2C7F1977-0CE4-4C11-9FD4-75B0CBEAA2EB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,10 +13,14 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{24C99B24-8AFD-440F-B446-73A2DA541CC2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{24C99B24-8AFD-440F-B446-73A2DA541CC2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{24C99B24-8AFD-440F-B446-73A2DA541CC2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{24C99B24-8AFD-440F-B446-73A2DA541CC2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3DC8D62F-1E37-46FC-A2FF-6701665783B5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3DC8D62F-1E37-46FC-A2FF-6701665783B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3DC8D62F-1E37-46FC-A2FF-6701665783B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3DC8D62F-1E37-46FC-A2FF-6701665783B5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2C7F1977-0CE4-4C11-9FD4-75B0CBEAA2EB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2C7F1977-0CE4-4C11-9FD4-75B0CBEAA2EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2C7F1977-0CE4-4C11-9FD4-75B0CBEAA2EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2C7F1977-0CE4-4C11-9FD4-75B0CBEAA2EB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
