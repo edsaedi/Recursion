@@ -6,27 +6,32 @@ namespace MergeSortTest
 {
     public class UnitTest1
     {
+        Random rand = new Random();
+
         [Fact]
-        public void Test1()
+        public void MergeSort()
         {
-            Random rand = new Random();
             for (int i = 0; i < 100; i++)
             {
                 int size = rand.Next(0, 101);
-                int[] array = Randomize(size, 100);
+                int[] array = Randomize(size);
+                array = SortLibrary.Sorts.MergeSort<int>(array);
+                for (int j = 1; j < size; j++)
+                {
+                    Assert.True(array[j - 1].CompareTo(array[j]) <= 0);
+                }
                 //store merge sort array
                 //SortLibrary.Sorts.MergeSort<int>;
                 //assert merge sort array is sorted
             }
         }
 
-        public int[] Randomize(int size, int maxNum)
+        public int[] Randomize(int size)
         {
-            Random rand = new Random();
             int[] array = new int[size];
             for (int i = 0; i < size; i++)
             {
-                array[i] = rand.Next(0, maxNum);
+                array[i] = rand.Next(0, size);
             }
             return array;
         }

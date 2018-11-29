@@ -18,13 +18,13 @@ namespace SortLibrary
             //calculate the mid index
             int mid = array.Length / 2;
             //create a left array
-            T[] left = new T[mid - 1];
+            T[] left = new T[mid];
             for (int i = 0; i < left.Length; i++)
             {
                 left[i] = array[i];
             }
             //create a right array
-            T[] right = new T[mid];
+            T[] right = new T[array.Length - mid];
             for (int i = mid, j = 0; j < right.Length; i++, j++)
             {
                 right[j] = array[i];
@@ -39,31 +39,102 @@ namespace SortLibrary
 
         private static T[] Merge<T>(T[] left, T[] right) where T : IComparable<T>
         {
+            if (left.Length == 0)
+            {
+                return right;
+            }
+
+            if (right.Length == 0)
+            {
+                return left;
+            }
+
             //merge both arrays together
             T[] temp = new T[left.Length + right.Length];
 
-            int x = 0;
-            int y = 0;
-            int z = 0;
+            int L = 0;
+            int R = 0;
 
-            for (z = 0; z < temp.Length; z++)
+            //Option A
+            //for (int i = 0; i < temp.Length; i++)
+            //{
+            //    if (L < left.Length && R < right.Length)
+            //    {
+            //        if (left[L].CompareTo(right[R]) < 0)
+            //        {
+            //            temp[i] = left[L];
+            //            L += 1;
+            //        }
+            //        else
+            //        {
+            //            temp[i] = right[R];
+            //            R += 1;
+            //        }
+            //    }
+            //    else if(L < left.Length)
+            //    {
+            //        temp[i] = left[L];
+            //        L += 1;
+            //    }
+            //    else if(R < right.Length)
+            //    {
+            //        temp[i] = right[R];
+            //        R += 1;
+            //    }
+            //}
+
+            //Option B
+            //for (int i = 0; i < temp.Length; i++)
+            //{
+
+            //    //If (L is available AND R is not Available) || (both are available AND L is the smaller one)
+            //    if (L < left.Length && (R >= right.Length || left[L].CompareTo(right[R]) < 0))
+            //    {
+            //        temp[i] = left[L];
+            //        L += 1;
+            //    }
+            //    else if (R < right.Length && (L >= left.Length || left[L].CompareTo(right[R]) >= 0))
+            //    {
+            //        temp[i] = right[R];
+            //        R += 1;
+            //    }
+            //}
+
+            //Option C
+            int i = 0;
+            //while both array are available
+            //copy from smaller
+            while (L < left.Length && R < right.Length)
             {
-                if (x == temp.Length - 1)
+                if (left[L].CompareTo(right[R]) < 0)
                 {
-                    temp[z] = left[x];
+                    temp[i] = left[L];
+                    L++;
                 }
-                else if (y == temp.Length - 1)
+                else
                 {
-                    temp[z] = right[y];
+                    temp[i] = right[R];
+                    R++;
                 }
-                else if (left[x].CompareTo(right[y]) >= 0)
-                {
-                    x += 1;
-                }
-                else if (left[x].CompareTo(right[y]) < 0)
-                {
-                    y += 1;
-                }
+                i++;
+            }
+
+            //while left is available
+            //copy from left
+            while (L < left.Length)
+            {
+                temp[i] = left[L];
+                L++;
+                i++;
+            }
+
+            //while right is available
+            //copy from right
+            while (R < right.Length)
+            {
+                temp[i] = right[R];
+                R++;
+                i++;
             }
 
             return temp;
