@@ -8,6 +8,57 @@ namespace SortLibrary
 {
     public class Sorts
     {
+
+        public static T[] QuickSort<T>(T[] array) where T : IComparable<T>
+        {
+            QuickSort(array, 0, array.Length - 1);
+            return array;
+        }
+
+        private static void QuickSort<T>(T[] array, int left, int right) where T : IComparable<T>
+        {
+            int pivot = Partition(array, left, right);
+            //Quicksort(array, left -> pivot)
+            QuickSort<T>(array, left, pivot);
+            QuickSort<T>(array, pivot + 1, right);
+            //Quicksort (array, pivot -> right)
+        }
+
+        private static int Partition<T>(T[] array, int left, int right) where T : IComparable<T>
+        {
+            //pivot starts at first index
+            int pivot = left;
+            left--;
+            right++;
+
+            while (left < right)
+            {
+                //move left pointer right until value is greater or equal to pivot
+                do
+                {
+                    left++; //must occur at least once every loop
+                } while (array[left].CompareTo(array[pivot]) < 0);
+
+                //move right pointer left until value found to be smaller or equal than pivot
+                do
+                {
+                    right++;
+                } while (array[left].CompareTo(array[pivot]) >= 0);
+
+                if (left < right)
+                {
+                    //swap left and right
+                    var temp = array[left];
+                    array[left] = array[right];
+                    array[right] = array[left];
+                }
+            }
+
+            //return new pivot position
+            return right;
+        }
+
+
         public static T[] MergeSort<T>(T[] array) where T : IComparable<T>
         {
             if (array.Length <= 1)
