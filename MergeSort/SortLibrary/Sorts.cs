@@ -17,21 +17,52 @@ namespace SortLibrary
 
         private static void QuickSort<T>(T[] array, int left, int right) where T : IComparable<T>
         {
-            int pivot = Partition(array, left, right);
-            //Quicksort(array, left -> pivot)
-            QuickSort<T>(array, left, pivot);
-            QuickSort<T>(array, pivot + 1, right);
-            //Quicksort (array, pivot -> right)
+            if (left < right)
+            {
+                int pivot = LomutoPartition(array, left, right);
+                QuickSort<T>(array, left, pivot - 1);
+                QuickSort<T>(array, pivot + 1, right);
+            }
         }
 
-        private static int Partition<T>(T[] array, int left, int right) where T : IComparable<T>
+        public static int LomutoPartition<T>(T[] array, int left, int right) where T : IComparable<T>
+        {
+            int pivot = right;
+            int wall = left;
+
+            for (int i = left; i < right; i++)
+            {
+                //if the pointer is less than the pivot, swap pointer and wall
+                if (array[i].CompareTo(array[pivot]) < 0)
+                {
+                    if (i != wall)
+                    {
+                        var temp = array[wall];
+                        array[wall] = array[i];
+                        array[i] = temp;
+                    }
+                    wall++;
+                }
+            }
+
+            if (pivot != wall)
+            {
+                var temp = array[pivot];
+                array[pivot] = array[wall];
+                array[wall] = temp;
+            }
+
+            return wall;
+        }
+
+        private static int HoarePartition<T>(T[] array, int left, int right) where T : IComparable<T>
         {
             //pivot starts at first index
             int pivot = left;
             left--;
             right++;
 
-            while (left < right)
+            while (true)
             {
                 //move left pointer right until value is greater or equal to pivot
                 do
@@ -42,20 +73,19 @@ namespace SortLibrary
                 //move right pointer left until value found to be smaller or equal than pivot
                 do
                 {
-                    right++;
-                } while (array[left].CompareTo(array[pivot]) >= 0);
+                    right--;
+                } while (array[right].CompareTo(array[pivot]) > 0);
 
-                if (left < right)
+                if (left >= right)
                 {
-                    //swap left and right
-                    var temp = array[left];
-                    array[left] = array[right];
-                    array[right] = array[left];
+                    return right;
                 }
-            }
 
-            //return new pivot position
-            return right;
+                //swap left and right
+                var temp = array[left];
+                array[left] = array[right];
+                array[right] = temp;
+            }
         }
 
 
